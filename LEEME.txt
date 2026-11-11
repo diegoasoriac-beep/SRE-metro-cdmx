@@ -1,0 +1,27 @@
+STC METRO CDMX - ARCHIVOS LISTOS PARA GITHUB PAGES
+
+ARCHIVOS:
+- index.html: página principal (debe quedar en la raíz del repositorio).
+- styles.css: estilos visuales.
+- app.js: funciones e interacciones.
+- logo-route.png: logo de ROUTE.
+- publicidad-tecnm.png: imagen del anuncio.
+- .nojekyll: evita el procesamiento Jekyll de GitHub Pages.
+
+PUBLICACIÓN:
+1. Extrae este ZIP.
+2. En GitHub crea un repositorio público.
+3. Entra al repositorio y usa Add file > Upload files.
+4. Sube TODOS los archivos de esta carpeta, incluyendo las dos imágenes.
+   No subas solamente el ZIP.
+5. Pulsa Commit changes.
+6. Ve a Settings > Pages.
+7. En Build and deployment elige Deploy from a branch.
+8. Selecciona la rama main y la carpeta /(root), y guarda.
+9. Espera a que GitHub Pages publique el sitio. La dirección aparecerá en Settings > Pages.
+
+IMPORTANTE SOBRE LOS REPORTES:
+La versión actual guarda reportes en localStorage del navegador. Eso significa que
+cada visitante conserva sus propios reportes; todavía no se comparten entre todos.
+Para compartir incidencias entre usuarios será necesario conectar una base de datos
+con un servicio backend.
