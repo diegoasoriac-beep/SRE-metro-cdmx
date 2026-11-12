@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Metro CDMX - Reportes</title>
+    <!-- Estilos visuales separados para mantener ordenado el proyecto. -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- Pantalla de bienvenida: muestra el slogan al entrar y desaparece automáticamente. -->
+<div id="welcomeOverlay" class="welcome-overlay" role="dialog" aria-label="Bienvenido a STC Metro CDMX">
+    <div class="welcome-card">
+        <img class="welcome-logo" src="logo-route.png" alt="Logo STC Metro">
+        <p class="welcome-brand">STC METRO CDMX</p>
+        <h2>Tu ruta, tu tiempo, tu ciudad.</h2>
+        <p class="welcome-caption">Planea tu recorrido con más información.</p>
+        <span class="welcome-loader" aria-hidden="true"></span>
+    </div>
+</div>
+
+<header>
+
+    <div class="logo">
+
+        <img class="logo-icon" src="logo-route.png" alt="Logo STC Metro">
+
+        <div>
+            <h1>Metro CDMX</h1>
+            <p class="site-slogan">Tu ruta, tu tiempo, tu ciudad.</p>
+            <p class="site-description">Sistema de reportes de estaciones</p>
+        </div>
+
+    </div>
+
+    <div>
+        <strong id="activeCounter">0</strong> reportes activos
+    </div>
+
+</header>
+
+
+<div class="container">
+
+    <div class="dashboard">
+
+        <!-- LINEAS -->
+
+        <aside class="line-panel">
+
+            <h2>Líneas</h2>
+
+            <div class="line-buttons" id="lineButtons"></div>
+
+            <!-- Panel publicitario: muestra el anuncio del Tecnológico Nacional de México. -->
+            <section class="ad-card" aria-label="Publicidad educativa">
+                <div class="ad-heading">
+                    <span class="ad-indicator" aria-hidden="true"></span>
+                    <h3>Publicidad</h3>
+                </div>
+                <img
+                    class="ad-image"
+                    src="publicidad-tecnm.png"
+                    alt="Anuncio del Instituto Tecnológico de Gustavo A. Madero con información de carreras y oferta educativa"
+                    loading="lazy"
+                >
+                <p class="ad-caption">Conoce la oferta educativa.</p>
+            </section>
+
+        </aside>
+
+
+        <!-- CONTENIDO -->
+
+        <main class="content">
+
+            <section class="top-card">
+
+                <h2 id="lineTitle">
+                    Línea 1
+                </h2>
+
+                <p id="lineDescription">
+                    Selecciona una estación para consultar o registrar reportes.
+                </p>
+
+                <input
+                    type="text"
+                    id="search"
+                    class="search"
+                    placeholder="Buscar estación..."
+                >
+
+            </section>
+
+            <section class="planner-card">
+                <h2>¿Cómo llegar?</h2>
+                <p class="planner-intro">
+                    Elige tu estación de origen y destino. Se mostrarán varias rutas y se intentarán evitar estaciones con reportes activos.
+                </p>
+                <div class="planner-grid">
+                    <div class="planner-field">
+                        <label for="routeOrigin">¿En qué estación estás?</label>
+                        <select id="routeOrigin" required></select>
+                    </div>
+                    <div class="planner-field">
+                        <label for="routeDestination">¿A qué estación te diriges?</label>
+                        <select id="routeDestination" required></select>
+                    </div>
+                </div>
+                <div class="planner-actions">
+                    <button class="planner-button" type="button" onclick="planRoute()">Buscar rutas</button>
+                    <button class="planner-button secondary" type="button" onclick="swapRouteStations()">Intercambiar origen y destino</button>
+                </div>
+                <div id="routeResults" class="route-results"></div>
+            </section>
+
+            <section>
+                <div class="stations" id="stations"></div>
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div class="modal-background" id="modalBackground">
+
+    <div class="modal">
+
+        <button class="close" onclick="closeModal()">
+            ×
+        </button>
+
+        <h2 id="modalTitle">
+            Estación
+        </h2>
+
+        <p class="station-selected" id="modalLine">
+            Línea
+        </p>
+
+
+        <form id="reportForm">
+
+            <label>
+                Tipo de reporte
+            </label>
+
+            <select id="reportType" required>
+
+                <option value="">
+                    Selecciona una opción
+                </option>
+
+                <option value="accidente">
+                    🚨 Accidente
+                </option>
+
+                <option value="falla">
+                    ⚠️ Falla
+                </option>
+
+                <option value="mantenimiento">
+                    🔧 Mantenimiento
+                </option>
+
+                <option value="obstruccion">
+                    🚧 Obstrucción
+                </option>
+
+                <option value="otro">
+                    ℹ️ Otro
+                </option>
+
+            </select>
+
+
+            <label>
+                Descripción
+            </label>
+
+            <textarea
+                id="reportDescription"
+                placeholder="Describe brevemente lo ocurrido..."
+                required
+            ></textarea>
+
+
+            <button class="submit" type="submit">
+                Registrar reporte
+            </button>
+
+        </form>
+
+
+        <div class="reports-title">
+
+            <h3>
+                Reportes de esta estación
+            </h3>
+
+        </div>
+
+        <div id="stationReports"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- Lógica e interacciones de la aplicación en un archivo separado. -->
+<script src="app.js" defer></script>
+
+
+</body>
+</html>
